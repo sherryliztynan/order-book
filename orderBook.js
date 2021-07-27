@@ -16,6 +16,14 @@ function reconcileOrder(existingBook, incomingOrder) {
 
       return existingBook
     }
+    // 3 - type doesn't match but price and quantity don't match either
+    if (!matchingOrderType &&
+    !matchingPrice) {
+      existingBook.push(incomingOrder)
+
+      return existingBook
+    }
   }
 }
+
 module.exports = reconcileOrder
