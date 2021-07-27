@@ -23,7 +23,16 @@ function reconcileOrder(existingBook, incomingOrder) {
 
       return existingBook
     }
+    // 4 - perfect match buy/sell --> remove from book//
+    if (!matchingOrderType &&
+    matchingQuantity &&
+    matchingPrice) {
+      existingBook.splice([i], 1)
+
+      return existingBook
+    }
   }
 }
+
 
 module.exports = reconcileOrder
