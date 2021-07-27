@@ -41,6 +41,15 @@ function reconcileOrder(existingBook, incomingOrder) {
 
       return existingBook
     }
+    if (!matchingOrderType &&
+      matchingPrice &&
+      incomingOrder.quantity > existingBook[i].quantity) {
+      existingBook[i].quantity = incomingOrder.quantity -= existingBook[i].quantity
+
+      existingBook.splice(i, 1)
+
+      return reconcileOrder(existingBook, incomingOrder)
+    }
   }
 }
 
