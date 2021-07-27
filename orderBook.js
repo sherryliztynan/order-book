@@ -31,6 +31,16 @@ function reconcileOrder(existingBook, incomingOrder) {
 
       return existingBook
     }
+    // 5 - buy/sell same price/larger quantity --> save remainder quantity to book//
+    if (!matchingOrderType &&
+    incomingOrder.quantity < existingBook[i].quantity &&
+    matchingPrice) {
+      existingBook[i].quantity = existingBook[i].quantity -= incomingOrder.quantity
+
+      existingBook.push(...existingBook.splice(i, 1))
+
+      return existingBook
+    }
   }
 }
 
